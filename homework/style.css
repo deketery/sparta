@@ -1,0 +1,23 @@
+.wrap {
+    width: 900px;
+    margin: 10px auto;
+    padding: 40px;
+}
+
+.content_wrap {
+    width: 500px;
+    padding: 25px 25px 25px 25px;
+    margin: 10px auto;
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+.img_box {
+    background-position: center;
+    background-size: cover;
+    margin: 10px 20px;
+}
+
+.button_box {
+    text-align: center;
+}

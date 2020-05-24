@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2주차 과제</title>
+
+    <!-- 부트스트랩 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!---구글폰트-->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <!-- 제이쿼리 cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 왜안될까 */
+        input::placeholder {
+            color: greenyellow;
+            font-style: italic;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: 30px auto;
+            border: lightslategray solid 2px;
+            border-radius: 5px;
+            padding: 30px 30px 30px 30px;
+
+        }
+
+        .img_div {
+            border: 1.5px solid rgb(235, 237, 240);
+            border-radius: 5px;
+            padding: 5px 5px 5px 5px;
+            text-align: center;
+        }
+
+        .order_button {
+            text-align: center;
+        }
+
+        .title_div {
+            margin-top: 20px;
+        }
+
+        .title_div h2,
+        .title_div p {
+            display: inline;
+            font-weight: bold;
+        }
+
+        .description_div {
+            margin-top: 20px;
+        }
+        .exchange_USD{
+            color:blue;
+        }
+        .ex_USD p,
+        .ex_USD span{
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="img_div">
+            <img src="https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll300/34-235-247-V17.jpg" alt="">
+        </div>
+        <div class="title_div">
+            <h2>아무거나 팝니다. </h2>
+            <p>가격: 3,000원 / 개 </p>
+        </div>
+        <div class="description_div">
+            <p>아무거나 어쩌고 설명을 해봅니다.</p>
+            <div class="ex_USD">
+            <p>달러 - 원 환율 :
+                <span id="exchange_USD" class="exchange_USD"></span>
+            </p>
+        </div>
+        </div>
+        <hr width="300">
+        <div class="form_div">
+            <form>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label name">이름</label>
+                    <div class="col-sm-10">
+                        <input type="name" class="form-control" id="input_name" placeholder="이름을 입력하세요.">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="count" class="col-sm-2 col-form-label">수량</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="input_count">
+                            <option>수량을 선택하세요.</option>
+                            <option>1개</option>
+                            <option>2개</option>
+                            <option>3개</option>
+                            <option>4개</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">주소</label>
+                    <div class="col-sm-10">
+                        <input type="address" class="form-control" id="input_address" placeholder="주소를 입력하세요">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contact" class="col-sm-2 col-form-label">연락처</label>
+                    <div class="col-sm-10">
+                        <input type="contact" class="form-control" id="input_contact" placeholder="연락처를 입력하세요">
+                    </div>
+                </div>
+                <div class="order_button">
+                    <button type="button" class="btn btn-primary" onclick="order_click();">주문하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script>
+        // val() 쓰려면 jquery cdn 필요.
+        function order_click() {
+            if ($('#input_name').val() == "") {
+                alert("이름을 입력하세요.");
+            }
+            else if ($('#input_count').val() == "수량을 선택하세요.") {
+                alert("수량을 선택하세요.");
+            }
+            else if ($('#input_address').val() == "") {
+                alert("주소를 입력하세요.");
+            }
+            else if ($('#input_contact').val() == "") {
+                alert("연락처를 입력하세요.");
+            }
+            else {
+                alert("주문이 완료되었습니다.")
+            }
+        }
+    </script>
+
+<script>
+    $(document).ready(function(){
+        exchange_check();
+      // 여기에 환율 API Ajax 요청을 하면 되겠죠?
+    });
+    </script>
+
+    <script>
+           function exchange_check() {
+            $('#exchange_USD').empty();
+            $.ajax
+                ({
+                    type: "GET",
+                    url: "https://api.manana.kr/exchange/rate.json",
+                    data: '{}',
+                    success: function (response) {
+                        let rate_USD = response[1]["rate"];
+                        let temp_html = '';
+                        temp_html = `<p>${rate_USD}</p>`;
+                        $('#exchange_USD').append(temp_html);
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>
