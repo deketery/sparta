@@ -150,11 +150,12 @@
 <script>
     $(document).ready(function(){
         exchange_check();
-      // 여기에 환율 API Ajax 요청을 하면 되겠죠?
+      // 새로고침시 실행 :여기에 환율 API Ajax 요청
     });
     </script>
 
     <script>
+    //환율요청 api실행
            function exchange_check() {
             $('#exchange_USD').empty();
             $.ajax
