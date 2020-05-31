@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyword master</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: floralwhite;
+        }
+
+        body {
+            background-color: rgb(37, 34, 34);
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        h5 {
+            font-size: 17px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        hr.hr_bar {
+            border-top: 1px solid white;
+        }
+
+        .wrap {
+            margin: 20px 100px;
+            padding: 30px 30px 30px 30px;
+            border: gray solid 1px;
+            border-radius: 5px;
+        }
+
+
+        .keyword_table {
+            width: 90%;
+            padding: 10 10 10 10;
+            text-align: center;
+        }
+
+        .input-group {
+            padding-left: 30px;
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="row">
+            <div class="col-8">
+                <h1>키워드 분석기 해리꺼</h1>
+                <hr class="hr_bar">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="" aria-label="keyword"
+                        aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" onclick="clcick_button()" type="button"
+                            id="button-addon2">검색</button>
+                    </div>
+                </div>
+
+                <hr class="hr_bar">
+                <table class="keyword_table" border="2">
+                    <thead>키워드
+                        <tr>
+                            <td>PC</td>
+                            <td>MO</td>
+                            <td>SUM</td>
+                            <td>DOC</td>
+                            <td>PC top10</td>
+                            <td>MO top10</td>
+                        </tr>
+                    </thead>
+                    <tbody id="#names-q1">
+                        <!-- 첫번째 줄 시작  -->
+                        <!--  <tr>
+                        <td>첫번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>두번째 칸</td>
+                        <td>두번째 칸</td>
+                        </tr>
+                        첫번째 줄 끝 -->
+                    </tbody>
+                </table>
+
+                <hr class="hr_bar">
+
+                <div class="description">
+                    <p> 기타 설명 작성 </p>
+
+                </div>
+            </div>
+            <div class="col-2">
+                <h5>날짜 및 조회율</h5>
+
+
+            </div>
+            <div class="col-2">
+                <h5>랜덤 키워드</h5>
+            </div>
+        </div>
+        <script>
+
+            function clcick_button() {
+                alert("나중에 수정할래")
+            }
+        </script>
+
+        <script>
+            function q1() {
+                $('#names-q1').empty();
+                $.ajax({
+                    type: "POST",
+                    url: "https://openapi.naver.com/v1/datalab/search",
+                    data: {},
+                    success: function (response) {
+                        let rows = response["rentBikeStatus"]["row"];
+                        for (let i = 0; i < rows.length; i++) {
+                            let bike_info = rows[i];
+                            let staion_name = bike_info["stationName"];
+                            let total_bike = bike_info["rackTotCnt"];
+                            let now_bike = bike_info["parkingBikeTotCnt"]
+                            let temp_html = ``
+                            if (now_bike < 4) {
+                                temp_html = `<tr >
+                        <td><p class="red">${staion_name}</p></td>
+                        <td><p class="red">${total_bike}</p></td>
+                        <td><p class="red">${now_bike}</p></td>
+                    </tr>`
+                            } else {
+                                temp_html = `<tr >
+                        <td> <p class="blue">${staion_name}</p></td>
+                        <td> <p class="blue">${total_bike}</p></td>
+                        <td> <p class="blue">${now_bike}</p></td>
+                    </tr>`
+                            }
+
+                            $('#names-q1').append(temp_html)
+                        }
+                    }
+                }
+                )
+            }
+        </script>
+</body>
+
+</html>
