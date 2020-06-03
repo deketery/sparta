@@ -1,0 +1,428 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    <style>
+        .wrap {
+            width: 250px;
+            height: 150px;
+            margin: 30px auto;
+            padding: 20px 20px 20px 20px;
+            text-align: center;
+            background-color: beige;
+        }
+
+        .box {
+            padding: 20px 20px 20px 20px;
+        }
+
+        .input_box {
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            border: black 2px solid;
+        }
+
+        h1 {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#sampleId").focus();
+
+            $("#sampleId").keydown(function (key) {
+                if (key.keyCode == 13) {
+                    var sampleId = $("#sampleId").val();
+                    var urlId = "";
+                    if (sampleId == "1") {
+                        urlId = "https://ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "2") {
+                        urlId = "https://bank.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "3") {
+                        urlId = "https://loan.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "4") {
+                        urlId = "https://abc.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "5") {
+                        urlId = "https://bqz.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "6") {
+                        urlId = "https://cok.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "7") {
+                        urlId = "https://don.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "8") {
+                        urlId = "https://econo.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "9") {
+                        urlId = "https://flus.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "10") {
+                        urlId = "https://gob.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "11") {
+                        urlId = "https://ggobuk.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "12") {
+                        urlId = "https://hop.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "13") {
+                        urlId = "https://iot.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "14") {
+                        urlId = "https://jet.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "15") {
+                        urlId = "https://kong.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "16") {
+                        urlId = "https://lon.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "17") {
+                        urlId = "https://mon.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "18") {
+                        urlId = "https://note.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "19") {
+                        urlId = "https://onut.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "20") {
+                        urlId = "https://post.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "21") {
+                        urlId = "https://quick.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "22") {
+                        urlId = "https://rol.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "23") {
+                        urlId = "https://sub.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "24") {
+                        urlId = "https://ton.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "25") {
+                        urlId = "https://uno.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "26") {
+                        urlId = "https://vu.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "27") {
+                        urlId = "https://won.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "28") {
+                        urlId = "https://aab.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "29") {
+                        urlId = "https://bbo.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "30") {
+                        urlId = "https://ccv.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "31") {
+                        urlId = "https://ddo.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "32") {
+                        urlId = "https://eea.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "33") {
+                        urlId = "https://fsa.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "34") {
+                        urlId = "https://gg.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "35") {
+                        urlId = "https://hht.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "36") {
+                        urlId = "https://it.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "37") {
+                        urlId = "https://jam.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "38") {
+                        urlId = "https://kko.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "39") {
+                        urlId = "https://ltwo.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "40") {
+                        urlId = "https://money.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "41") {
+                        urlId = "https://nna.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "42") {
+                        urlId = "https://oopa.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "43") {
+                        urlId = "https://ppt.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "44") {
+                        urlId = "https://qqe.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "45") {
+                        urlId = "https://ror.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "46") {
+                        urlId = "https://sis.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "47") {
+                        urlId = "https://tet.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "48") {
+                        urlId = "https://usu.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "49") {
+                        urlId = "https://vov.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "50") {
+                        urlId = "https://wow.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "51") {
+                        urlId = "https://car.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "52") {
+                        urlId = "https://suv.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "53") {
+                        urlId = "https://benz.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "54") {
+                        urlId = "https://ferari.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "55") {
+                        urlId = "https://forte.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "56") {
+                        urlId = "https://kao.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "57") {
+                        urlId = "https://yes.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "58") {
+                        urlId = "https://ok.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "59") {
+                        urlId = "https://bos.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "60") {
+                        urlId = "https://go.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "61") {
+                        urlId = "https://esy.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "62") {
+                        urlId = "https://soso.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "63") {
+                        urlId = "https://new.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "64") {
+                        urlId = "https://ppo.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "65") {
+                        urlId = "https://cos.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "66") {
+                        urlId = "https://lov.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "67") {
+                        urlId = "https://min.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "68") {
+                        urlId = "https://daily.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "69") {
+                        urlId = "https://how.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "70") {
+                        urlId = "https://eocnf.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "71") {
+                        urlId = "https://ez.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "72") {
+                        urlId = "https://be.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "73") {
+                        urlId = "https://you.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "74") {
+                        urlId = "https://quiz.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "75") {
+                        urlId = "https://kkan.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "76") {
+                        urlId = "https://koma.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "77") {
+                        urlId = "https://goma.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "78") {
+                        urlId = "https://so.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "79") {
+                        urlId = "https://to.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "80") {
+                        urlId = "https://ou.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "81") {
+                        urlId = "https://mar.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "82") {
+                        urlId = "https://tor.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "83") {
+                        urlId = "https://ter.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "84") {
+                        urlId = "https://naw.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "85") {
+                        urlId = "https://sun.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "86") {
+                        urlId = "https://moon.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "87") {
+                        urlId = "https://fow.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "88") {
+                        urlId = "https://rany.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "89") {
+                        urlId = "https://nina.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "90") {
+                        urlId = "https://joy.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+                    else if (sampleId == "91") {
+                        urlId = "blog.ezmony.net/wp-admin/post-new.php";
+                        window.open(urlId);
+                    }
+
+                    else {
+                        alert("1~100 사이를 입력하세요.")
+                    }
+
+                }
+            })
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+        <h1>워프 오픈기</h1>
+        <div class="box">
+            <input class="input_box" type="text" id="sampleId" placeholder="1~100중 입력하세요" />
+        </div>
+    </div>
+</body>
+
+</html>

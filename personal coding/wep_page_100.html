@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서</title>
+</head>
+<!-- JQuery를 import 합니다 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<body>
+    <div>
+        <input id="search_name" type="text" name="" id="">
+        <button onclick="q1()">조회</button>
+    </div>
+</body>
+<script>
+    function q1() {
+        let value = $('#search_name').val();
+        let https = 'https://'
+        let _url = '.ezmony.net/wp-admin/post-new.php'
+        if (value == 1) {
+            url = https + 'bank' + _url;
+        }
+        else if (value == 2) {
+            url = https + 'ggobuk' + _url;
+        }
+        else if (value == 3) {
+            url = https + 'loan' +  _url;
+        }
+        //else if ~ } 여기까지를 형이 넣어놓으면 됨
+        else {
+            alert('메뉴에 번호가 없습니다.')
+        }
+
+        window.open(url);
+    }
+
+</script>
+
+</html>

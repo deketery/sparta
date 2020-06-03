@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        h1 {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .wrap {
+            margin: 20px auto;
+            padding: 20px 10px 20px 10px;
+            background-color: beige;
+            border-radius: 5px;
+            width: 900px;
+            min-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>서버를 만들었다!</h1>
+        <div>
+            <img src="{{ url_for('static', filename='rome.jpg') }}" width="250px" />
+        </div>
+        <div>
+            <img src="{{ url_for('static', filename='DSCF3277_LR.jpg') }}" width="250px" />
+        </div>
+    </div>
+</body>
+
+</html>

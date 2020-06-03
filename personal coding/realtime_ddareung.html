@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>따릉이 조회기</title>
+
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        h1 {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid;
+            height: 30px;
+        }
+
+        .wrap {
+            width: 900px;
+            min-height: 500px;
+            margin: 20px auto;
+            padding: 10px 10px 10px 10px;
+            background-color: blanchedalmond;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+
+        <h1>해리의 따릉이 실시간 조회기</h1>
+        <div class="search_box">
+            <input id="search_name" placeholder="지역을 입력하세요." type="text">
+            <button onclick="q1()"> 검색</button>
+        </div>
+        <div>
+
+        </div>
+        <div class="table_box">
+            <table>
+                <thead>
+                    <tr>
+                        <td>거치대 위치</td>
+                        <td>거치대 수</td>
+                        <td>현재 거치된 따릉이 수</td>
+                    </tr>
+                </thead>
+                <tbody id="search_location"></tbody>    
+            </table>
+
+        </div>
+    </div>
+</body>
+<script>
+  function q1() {
+            $('#search_location').empty();
+            $.ajax({
+                type: "GET",
+                url: "http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/bikeList/1/1000",
+                data: {},
+                success: function (response) {
+                    let rows = response["rentBikeStatus"]["row"];
+                    for (let i = 0; i < rows.length; i++) {
+                        let bike_info = rows[i];
+                        let staion_name = bike_info["stationName"];
+                        let total_bike = bike_info["rackTotCnt"];
+                        let now_bike = bike_info["parkingBikeTotCnt"]
+                        let temp_html = ``
+
+                        //지역명을 입력했을때 있다면 출력 아니라면 출력하지x
+                        let value = $('#search_name').val();
+                        if (staion_name.indexOf(value)!=-1){
+                            temp_html =`<tr>
+                            <td><p>${staion_name}</p></td>
+                            <td><p>${total_bike}</p></td>
+                            <td><p>${now_bike}</p></td>
+                        </tr>`
+                        // }else{
+                        //     temp_html =`<tr>
+                        //     <td> <p>${staion_name}</p></td>
+                        //     <td> <p>${total_bike}</p></td>
+                        //     <td> <p>${now_bike}</p></td>
+                        // </tr>`
+                        }
+                        $('#search_location').append(temp_html)
+                    }
+                }
+            }
+            )
+        }
+</script>
+
+</html>
