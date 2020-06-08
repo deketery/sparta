@@ -4,7 +4,7 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>Hello, world!</title>
+    <title>메모장 </title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -92,14 +92,21 @@
     <!-- style -->
     <style type="text/css">
         * {
-            font-family: 'Stylish', sans-serif;
+            font-family: 'Noto Sans KR', sans-serif;
         }
-
+        h1{
+            font-size: 25px;
+            font-weight: bold;
+        }
         .wrap {
             width: 900px;
             margin: auto;
         }
-
+        .div_upper{
+            background-color: rgb(228, 220, 220);
+            padding: 20px 20px 20px 20px;
+            margin: 20px auto;
+        }
         .comment {
             color: blue;
             font-weight: bold;
@@ -124,9 +131,9 @@
 
 <body>
     <div class="wrap">
-        <div class="jumbotron">
-            <h1 class="display-4">나홀로 링크 메모장!</h1>
-            <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
+        <div class="div_upper">
+            <h1 class="title">나홀로 링크 메모장!</h1>
+            <p class="explain">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
             <hr class="my-4">
             <p class="lead">
                 <a id="btn-posting-box" onclick="openclose()" class="btn btn-primary btn-lg" href="#"

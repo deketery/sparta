@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>keyword master</title>
-     <!-- JQuery를 import 합니다 -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- bootstrap cdn -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <style>
         * {
@@ -23,6 +25,10 @@
         h1 {
             font-size: 25px;
             font-weight: bold;
+        }
+
+        h2 {
+            font-size: 20px;
         }
 
         h5 {
@@ -45,7 +51,12 @@
         }
 
         .keyword_table {
-            width: 90%;
+            width: 100%;
+            padding: 10 10 10 10;
+            text-align: center;
+        }
+        .tap_table {
+            width: 100%;
             padding: 10 10 10 10;
             text-align: center;
         }
@@ -66,10 +77,10 @@
     <div class="wrap">
         <div class="row">
             <div class="col-8">
-                <h1>키워드 분석기 해리꺼</h1>
+                <h1>키워드 분석기_Harry</h1>
                 <hr class="hr_bar">
                 <div class="input-group">
-                    <input type="text" class="form" placeholder="" aria-label="keyword">
+                    <input id="keyword" type="text" class="form" placeholder="">
                     <div class="input-group-append">
                         <button class="btn" onclick="clcick_button()" type="button" id="button-addon2">조회하기</button>
                     </div>
@@ -77,14 +88,15 @@
 
                 <hr class="hr_bar">
                 <table class="keyword_table" border="2">
-                    <thead>키워드
+                    <thead>
                         <tr>
-                            <td>PC</td>
-                            <td>MO</td>
-                            <td>SUM</td>
-                            <td>DOC</td>
-                            <td>PC top10</td>
-                            <td>MO top10</td>
+                            <td style="width: 20%;">키워드</td>
+                            <td style="width: 10%;">PC</td>
+                            <td style="width: 10%;">MO</td>
+                            <td style="width: 10%;">SUM</td>
+                            <td style="width: 10%;">DOC</td>
+                            <td style="width: 20%;">PC top10</td>
+                            <td style="width: 20%;">MO top10</td>
                         </tr>
                     </thead>
                     <tbody id="#names-q1"></tbody>
@@ -92,20 +104,35 @@
 
                 <hr class="hr_bar">
 
-                <div class="description">
-                    <p> 기타 설명 작성</p>
-                </div>
+                <div class="description_1">
+                    <table class="tap_table" border="2">
+                        <thead>
+                            <tr>
+                                <td>조회 키워드의 PC 탭순서</td>
+                                <td>조회 키워드의 MO 탭순서</td>
+                            </tr>
+                        </thead>
+                </table>
+            </div>
             </div>
             <div class="col-2">
                 <h5>날짜 및 조회율</h5>
+                <hr class="hr_bar">
             </div>
             <div class="col-2">
                 <h5>랜덤 키워드</h5>
+                <hr class="hr_bar">
+                <p>ㅁ 연관검색어</p>
+                <p>ㅁ 자동검색어</p>
+                <p>ㅁ 연관검색어</p>
+                <p>ㅁ 자동검색어</p>
+                <p>ㅁ 연관검색어</p>
+                <p>ㅁ 자동검색어</p>
             </div>
         </div>
         <script>
             function clcick_button() {
-               //여기에 JSON값을 불러와서 테이블로 만드는 코드가 필요.
+                //여기에 JSON값을 불러와서 테이블로 만드는 코드가 필요.
             }
         </script>
 
