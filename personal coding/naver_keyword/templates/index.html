@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyword master</title>
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    bootstrap cdn
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <!--js chart cdn-->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: floralwhite;
+        }
+
+        body {
+            background-color: rgb(37, 34, 34);
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h5 {
+            font-size: 17px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+
+        hr.hr_bar {
+            border-top: 1px solid white;
+            padding-top: 10px;
+
+        }
+
+        thead {
+            background-color: rgb(3, 3, 58);
+            text-align: center;
+        }
+
+        tr.thead_class {
+            height: 35px;
+        }
+
+        tbody {
+            font-size: 13.5px;
+        }
+
+        .wrap_wrap {
+            padding: 0px 20px 0px 20px;
+        }
+
+        .wrap {
+            width: 1300px;
+            margin: 20px auto;
+            padding: 30px 30px 30px 30px;
+            border: gray solid 1px;
+            border-radius: 5px;
+        }
+
+        .first_column {
+            width: 700px;
+
+        }
+
+        .second_column {
+            width: 200px;
+            padding: 0px 20px 0px 20px;
+        }
+
+        .third_column {
+            width: 150px;
+            padding: 0px 20px 0px 20px;
+        }
+
+        .keyword_table {
+            width: 100%;
+            margin: 10px auto;
+            padding: 10 10 10 10;
+            text-align: center;
+        }
+
+        .tap_table {
+            width: 70%;
+            margin: 10px auto;
+            padding: 10 10 10 10;
+            text-align: center;
+        }
+
+        .blog_table {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10 10 10 10;
+        }
+
+
+        .input-group {
+            padding-left: 30px;
+            width: 350px;
+        }
+
+        .input-box {
+            color: black;
+            font-weight: bold;
+        }
+
+        .btn {
+            color: white;
+            background-color: black;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#keyword").keypress(function (e) {
+                if (e.which == 13) {
+                    click_button();  // 엔터로 클릭
+                }
+            });
+        });
+
+        function click_button() {
+            //클릭시 테이블 비움
+            $('#tap_order_id').empty()
+            $('#blog_table_id').empty()
+            $('#ratio_id').empty()
+            $('#related_keyword_id').empty()
+
+            let keyword = $('#keyword').val() //키워드
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/list?keyword_give=' + keyword,
+                data: {},
+                success: function (response) {
+                    //키워드 검색량 , 문서량
+                    let keyword_amount_info = response['keyword_amount'];
+                    let relKeyword = keyword_amount_info['relKeyword'];
+                    let monthlyPcQcCnt = keyword_amount_info['monthlyPcQcCnt'];
+                    let monthlyMobileQcCnt = keyword_amount_info['monthlyMobileQcCnt'];
+                    let monthlySumQcCnt = monthlyPcQcCnt + monthlyMobileQcCnt;
+
+                    let docs_amount_info = response['docs_amount'];
+                    let total_doc = docs_amount_info["totaldoc"];
+
+                    make_keywordlist(
+                        relKeyword,
+                        monthlyPcQcCnt,
+                        monthlyMobileQcCnt,
+                        monthlySumQcCnt,
+                        total_doc)
+
+                    //blog_10_info
+                    let blog_pc_10 = response['blog_pc_10'];
+                    for (let i = 0; i < blog_pc_10.length; i++) {
+                        make_bloglist(
+                            i, // 번째
+                            blog_pc_10[i]["블로그링크"],
+                            blog_pc_10[i]["블로그제목"],
+                            blog_pc_10[i]["발행날짜"]
+                        )
+                    }
+
+                    //datalab_info
+                    let datalab_30 = response['datalab_30'];
+                    let datalab_results = datalab_30['results'];
+                    let datalab = datalab_results[0]['data'];
+                    for (let i = 0; i < datalab.length; i++) {
+                        make_ratiolist(
+                            datalab[i]['period'],
+                            datalab[i]['ratio']
+                        )
+                    }
+
+                    //taporder_info
+                    let tap_order = response['tap_order'];
+                    for (let i = 0; i < tap_order.length; i++) {
+                        make_taporderlist(
+                            tap_order[i]
+                        )
+                    }
+                }
+            });
+        }
+
+
+
+        function make_keywordlist(relKeyword, monthlyPcQcCnt, monthlyMobileQcCnt, monthlySumQcCnt, total_doc) {
+            temp_html_1 = `<tr>
+                            <td style="width: 25%;">${relKeyword}</td>
+                            <td style="width: 10%;">${monthlyPcQcCnt.toLocaleString()}</td>
+                            <td style="width: 10%;">${monthlyMobileQcCnt.toLocaleString()}</td>
+                            <td style="width: 10%;">${monthlySumQcCnt.toLocaleString()}</td>
+                            <td style="width: 11%;">${total_doc.toLocaleString()}</td>
+                            <td style="width: 17%;">T,N,N,D,E,N,N,N,N</td>
+                            <td style="width: 17%;">N,N,N,N,D,E,N,T,N</td>
+                        </tr>`
+            $('#keyword_table_id').append(temp_html_1)
+        }
+
+        function make_bloglist(i, blog_link, blog_title, blog_date) {
+            let temp_html_2 = ` <tr>
+                <td><a href="${blog_link}" target="_blank">${i + 1}번째</a></td>
+                <td>Naver</td>
+                <td>${blog_title}</td>
+                <td>${blog_date}</td>
+            </tr>`;
+            $('#blog_table_id').append(temp_html_2);
+        }
+
+        function make_ratiolist(keyword_period, keyword_ratio) {
+            let temp_html_3 = `<tr>
+            <td sytle="width:40%">${keyword_period}</td>
+            <td sytle="width:55%">${keyword_ratio}</td>
+            </tr>`;
+            $('#ratio_id').append(temp_html_3)
+        }
+
+        function make_taporderlist(taporder) {
+            let temp_html_4 = `
+            <tr>
+                <td>${taporder}</td>
+                <td></td>
+            </tr>`
+            $('#tap_order_id').append(temp_html_4)
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div class="wrap_wrap">
+        <div class="wrap">
+            <div class="row">
+                <div class="first_column">
+                    <h1>키워드 분석기_Harry</h1>
+                    <p></p>
+                    <div class="input-group">
+                        <input class="input-box" id="keyword" type="text" class="form" placeholder="">
+                        <div class="input-group-append">
+                            <button class="btn" onclick="click_button()" type="button" id="button-addon2">조회하기</button>
+                        </div>
+                    </div>
+                    <p></p>
+                    <h5>if sum/ doc >= 10:
+                        DB에 저장합니다. 엑셀로 추출도 가능하게</h5>
+                    <table class="keyword_table" border="2">
+                        <thead>
+                            <tr class="thead_class">
+                                <td style="width: 25%;">키워드</td>
+                                <td style="width: 10%;">PC</td>
+                                <td style="width: 10%;">MO</td>
+                                <td style="width: 10%;">SUM</td>
+                                <td style="width: 11%;">DOC</td>
+                                <td style="width: 17%;">PC top10</td>
+                                <td style="width: 17%;">MO top10</td>
+                            </tr>
+                        </thead>
+                        <tbody id="keyword_table_id">
+
+                        </tbody>
+                    </table>
+
+                    <div class="tap_order">
+                        <table class="tap_table" border="2">
+                            <thead>
+                                <tr class="thead_class">
+                                    <td style="width: 30%;">조회 키워드의 PC 탭순서</td>
+                                    <td style="width: 30%;">조회 키워드의 MO 탭순서</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tap_order_id">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="blog_order">
+                        <table class="blog_table" border="2">
+                            <thead>
+                                <tr class="thead_class">
+                                    <td colspan="4">조회 키워드의 PC 상위10순서</td>
+                                <tr>
+                                    <td>링크</td>
+                                    <td>출처</td>
+                                    <td>제목</td>
+                                    <td>발행일</td>
+                                </tr>
+                                </tr>
+                            </thead>
+                            <tbody id="blog_table_id">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="second_column">
+                    <table>
+                        <thead>
+                            날짜 및 조회율
+                        </thead>
+                        <hr class="hr_bar">
+                        <!-- 그래프 -->
+                        <tbody id="ratio_id">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="third_column">
+                    <h5>관련 키워드</h5>
+                    <hr class="hr_bar">
+                    <div id="related_keyword_id">
+                        <p>ㅁ 연관검색어</p>
+                        <p>ㅁ 자동검색어</p>
+                        <p>ㅁ 연관검색어</p>
+                        <p>ㅁ 자동검색어</p>
+                        <p>ㅁ 연관검색어</p>
+                        <p>ㅁ 자동검색어</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
